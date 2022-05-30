@@ -15,6 +15,16 @@ app.listen(config.PORT, () => {
 
 async function askForWeather(areaName) {
     const { code, name } = textToAreaCode(areaName);
+
+    try {
+        const response = await fetch(config.WEATHER_URL + code + '.json');
+        if (!response.ok) {
+            return null;
+        }
+        const json = await response.json();
+
+        
+    }
 }
 
 function textToAreaCode(text) {
