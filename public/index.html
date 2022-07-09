@@ -17,22 +17,20 @@
         <link rel="stylesheet" href="./css/chat.css">
         <title>chat</title>
 
-        <script type="text/javascript" src="js/input.js"></script>
-    </head>
+        </head>
     <body>
         <!-- 画面に表示されるエリアの開始 -->
-        Hello Worlds
-        <div id="container">
-            <div id="talks"></div>
-            <div id="send" class="m-2">
-                <div id="input_1" class="input-group">
-                    <input type="text" name="user_talk" id="form_1" class="form-control" placeholder="入力してください" aria-label="Recipient's username" aria-describedby="button-addon2" >
-                    <button id="send_btn" class="btn btn-primary" type="button" onclick="onClick();">送信</button>
-                </div>
-            </div>
+        
+        <button type="button" class="btn btn-outline-info">Info</button>
+        <div class="link-template">
+            <a class="link" href="" target="_blank">
+                <div class="link-text mb-2"></div>
+            </a>
         </div>
-        <div id="output"></div>
-        <div id="output_weather"></div>
+        <div class="user-template d-flex flex-row-reverse ml-2 mr-2">
+            <div class="alert alert-secondary message" role="alert"></div>
+        </div>
+        <div id="talks"></div>
         <div id="templates">
             <div class="bot-template d-flex flex-row ml-2 mr-2">
                 <div class="operator rounded bg-secondary mr-2"></div>
@@ -49,7 +47,19 @@
                 </div>
             </div>
         </div>
-        <button type="button" class="btn btn-outline-info">Info</button>
+        <div id="container">
+            <div id="send" class="m-2">
+                <div id="input_1" class="input-group">
+                    <input type="text" name="user_talk" id="form_1" class="form-control" placeholder="入力してください" aria-label="Recipient's username" aria-describedby="button-addon2" >
+                    <button id="send_btn" class="btn btn-outline-info" type="button">送信</button>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript" src="js/input.js"></script>
+        <script type="text/javascript" src="js/reply_bot.js"></script>
+        <script type="text/javascript" src="js/reply_user.js"></script>
+        <script type="text/javascript" src="js/show_page.js"></script>
+
     </body><!-- 画面に表示されるエリアの終了 -->
     
 </html>

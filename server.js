@@ -47,11 +47,11 @@ async function askForWeather(areaName) {
             return null;
         }
         const json = await response.json();
-        console.log(json);
+        //console.log(json);
         const latest = json[0].timeSeries[0].areas[0];
-        console.log(latest);
+        //console.log(latest);
         const reply = createReply(`${name}の天気は${latest.weathers[1]}でしょう`);
-        console.log(reply);
+        //console.log(reply);
         return reply;
     } catch (error) {
         console.error(error);

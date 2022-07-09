@@ -1,5 +1,4 @@
 
-
 function onClick() {
         const $inputText = $('input[name="user_talk"]');
         const text = $inputText.val();
@@ -8,7 +7,14 @@ function onClick() {
         if(!text) {
             console.log("none");
             return
-    }
+        }
+    callBackend(text);
+    addUserTalk(text);
+}
+
+function callBackend(text) {
+    addBotTalk();
+    scrollBottom();
     fetch('http://localhost:8080/chat?text=' + text)
         .then(response => response.json())
         .then(reply => {
@@ -16,5 +22,6 @@ function onClick() {
             console.log(reply);
             console.log("###### reply-end ######");
             $('#output_weather').html(reply.text);
-        })
-    }
+            setReplyToBotMessage(reply);
+        });
+}
