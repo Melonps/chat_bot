@@ -21,7 +21,6 @@ function callBackend(text) {
             console.log("###### reply ######");
             console.log(reply);
             console.log("###### reply-end ######");
-            $('#output_weather').html(reply.text);
             setReplyToBotMessage(reply);
         });
 }

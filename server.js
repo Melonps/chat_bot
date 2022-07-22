@@ -5,6 +5,7 @@ const config = require('./server-config.json');
 const express = require('express');
 const app = express();
 const fetch = require('node-fetch');
+const e = require('express');
 const AREA_JSON_FILE = './public/data/area.json';
 const areas = JSON.parse(fs.readFileSync(AREA_JSON_FILE, 'utf-8'));
 
@@ -16,8 +17,9 @@ app.listen(config.PORT, () => {
 });
 
 app.get('/chat', async function (req, res) {
-    const text = req.query.text || '';
-    const reply = await askForWeather(text);
+    let reply = null; 
+    let text = req.query.text || '';
+    reply = await smallTalk(text);
     console.log(reply);
     res.json(reply);
 });
@@ -40,7 +42,6 @@ function textToAreaCode(text) {
 }
 async function askForWeather(areaName) {
     const { code, name } = textToAreaCode(areaName);
-
     try {
         const response = await fetch(config.WEATHER_URL + code + '.json');
         if (!response.ok) {
@@ -63,4 +64,30 @@ function createReply(text, linkUrl = null, imageUrl = null, score = -1.0) {
     return {
         text, linkUrl, imageUrl, score,
     };
+}
+
+async function smallTalk(input) {
+    const params = new URLSearchParams();
+    params.append('apikey', config.TALK_API_KEY);
+    params.append('query', input);
+
+    try {
+        const response = await fetch(config.TALK_API_URL, {
+            method: 'POST',
+            body: params,
+        });
+        if (!response.ok) {
+            console.log(response);
+            return null;
+        }
+        const json = await response.json();
+        if (!json?.results || !json?.results[0].reply) {
+            return null;
+        }
+        const reply = { text: json?.results[0].reply, linkUrl: null, imageUrl: null };
+        return reply;
+    } catch (error) {
+        console.error(error);
+        return null;
+    }
 }

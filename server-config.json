@@ -4,5 +4,7 @@
     "WEATHER_DEFAULT_AREA" : {
         "name": "大阪府",
         "code": 270000
-    } 
+    },
+    "TALK_API_KEY": "DZZK9NFSNZXjRZ5rKHvwsnbdIsuLZOc7",
+    "TALK_API_URL": "https://api.a3rt.recruit.co.jp/talk/v1/smalltalk"
 }
