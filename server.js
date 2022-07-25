@@ -9,6 +9,8 @@ const e = require('express');
 const AREA_JSON_FILE = './public/data/area.json';
 const areas = JSON.parse(fs.readFileSync(AREA_JSON_FILE, 'utf-8'));
 
+require('dotenv').config();
+
 app.use(express.static(__dirname + '/public'));
 
 app.listen(config.PORT, () => {
@@ -68,11 +70,11 @@ function createReply(text, linkUrl = null, imageUrl = null, score = -1.0) {
 
 async function smallTalk(input) {
     const params = new URLSearchParams();
-    params.append('apikey', config.TALK_API_KEY);
+    params.append('apikey', process.env.TALK_API_KEY);
     params.append('query', input);
 
     try {
-        const response = await fetch(config.TALK_API_URL, {
+        const response = await fetch(process.env.TALK_API_URL, {
             method: 'POST',
             body: params,
         });
